@@ -8,12 +8,14 @@ class SignUpPage extends StatefulWidget {
 
 class SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldkey = new GlobalKey<ScaffoldState>();
 
   String _username, _password;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      key: _scaffoldkey,
       body: Form(
         key: _formKey,
         child: ListView(
@@ -109,10 +111,14 @@ class SignUpPageState extends State<SignUpPage> {
               "password": _password,
             },
           ).then((res) {
-            print(res.data);
+            _scaffoldkey.currentState.showSnackBar(SnackBar(
+              content: Text("success"),
+            ));
             Navigator.pop(context);
           }).catchError((err) {
-            print(err);
+            _scaffoldkey.currentState.showSnackBar(SnackBar(
+              content: Text("user existed"),
+            ));
           });
         },
       ),
