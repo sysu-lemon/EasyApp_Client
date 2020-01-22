@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Global {
@@ -16,7 +14,6 @@ class Global {
   }
 
   static Future<bool> checkToken() async{
-    print(token);
     try {
       Response res = await dio.get(
         '/token',

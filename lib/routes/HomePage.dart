@@ -1,9 +1,6 @@
-import 'dart:ui';
-
-import 'package:dio/dio.dart';
-import 'package:easy_app_client/routes/SignInPage.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_app_client/common/Global.dart';
+import 'package:easy_app_client/common/Permission.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -17,6 +14,13 @@ class HomePage extends StatelessWidget {
           title: Text("Home"),
           automaticallyImplyLeading: false,
           centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.exit_to_app, color: Colors.red),
+            onPressed: () {
+              Global.delToken();
+              Navigator.pushReplacementNamed(context, "/signIn");
+            },
+          )
         ),
         body: Center(
           child: Column(
@@ -25,12 +29,11 @@ class HomePage extends StatelessWidget {
               Text("token: " + Global.token),
               SizedBox(height: 100),
               RaisedButton(
-                child: Text("sign out"),
+                child: Text("request permission"),
                 onPressed: () {
-                  Global.delToken();
-                  Navigator.pushReplacementNamed(context, "/signIn");
+                  Permission.requestPermission();
                 },
-              ),
+              )
             ],
           ),
         )
