@@ -12,9 +12,9 @@ before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
 script:
-  - flutter build aot
-  - flutter build apk
-  - flutter build flx
+  - ./flutter/bin/flutter build aot
+  - ./flutter/bin/flutter build apk
+  - ./flutter/bin/flutter build flx
 cache:
   directories:
     - $HOME/.pub-cache
