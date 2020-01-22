@@ -73,6 +73,7 @@ class SignUpPageState extends State<SignUpPage> {
       ),
       validator: (String v) {
         if (v.isEmpty) return "please input the password";
+        if (v.length != 8) return "password should be size of 8";
         return null;
       },
     );
