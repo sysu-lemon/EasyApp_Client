@@ -15,7 +15,7 @@ android:
     - extra-google-m2repository
     - addon-google_apis-google-21
 before_install:
-  - git clone -b alpha https://github.com/flutter/flutter.git
+  - git clone -b stable https://github.com/flutter/flutter.git
   - wget http://services.gradle.org/distributions/gradle-3.5-bin.zip
   - unzip gradle-3.5-bin.zip
 install:
