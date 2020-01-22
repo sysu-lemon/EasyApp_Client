@@ -25,6 +25,9 @@ addons:
       - libstdc++6
       - fonts-droid
 before_script:
+  - curl -s "https://get.sdkman.io" | bash
+  - source "$HOME/.sdkman/bin/sdkman-init.sh"
+  - sdk version
   - sdk install gradle 6.1
   - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
 script:
