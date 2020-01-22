@@ -8,9 +8,9 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-25.0.3
-    - android-25
-    - sys-img-armeabi-v7a-google_apis-25
+    - build-tools-29.0.3
+    - android-29
+    - sys-img-armeabi-v7a-google_apis-29
     - extra-android-m2repository
     - extra-google-m2repository
     - extra-google-android-support
@@ -29,9 +29,9 @@ before_script:
   - source "$HOME/.sdkman/bin/sdkman-init.sh"
   - sdk version
   - sdk install gradle 6.1
-  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+  - git clone https://github.com/flutter/flutter.git
 script:
-  - ./flutter/bin/flutter -v build apk
+  - ./flutter/bin/flutter build apk
 
 cache:
   directories:
