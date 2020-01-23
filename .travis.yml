@@ -1,40 +1,35 @@
 os: linux
 language: android
 licenses:
-  - 'android-sdk-preview-license-.+'
-  - 'android-sdk-license-.+'
-  - 'google-gdk-license-.+'
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 android:
   components:
     - tools
     - platform-tools
-    - build-tools-29.0.3
-    - android-29
-    - sys-img-armeabi-v7a-google_apis-29
-    - extra-android-m2repository
-    - extra-google-m2repository
-    - extra-google-android-support
+    - build-tools-28.0.3
+    - android-28
 jdk: oraclejdk8
 sudo: false
 addons:
   apt:
-    # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
     sources:
-      - ubuntu-toolchain-r-test # if we don't specify this, the libstdc++6 we get is the wrong version
+      - ubuntu-toolchain-r-test
     packages:
       - libstdc++6
       - fonts-droid
+before_install:
+  - yes | sdkmanager "build-tools;28.0.3" "platforms;android-28"
 before_script:
-  - curl -s "https://get.sdkman.io" | bash
-  - source "$HOME/.sdkman/bin/sdkman-init.sh"
-  - sdk version
-  - sdk install gradle 6.1
-  - /usr/local/android-sdk/tools/bin/sdkmanager --update
-  - git clone https://github.com/flutter/flutter.git
-  - ./flutter/bin/flutter doctor
+  - wget https://services.gradle.org/distributions/gradle-3.5-bin.zip
+  - unzip -qq gradle-3.5-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-3.5
+  - export PATH=$GRADLE_HOME/bin:$PATH
+  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+  - export PATH=./flutter/bin:$PATH
 script:
-  - ./flutter/bin/flutter build apk
-
+  - "flutter -v build apk"
 cache:
   directories:
-    - $HOME/.pub-cache
+    - "$HOME/.pub-cache"
